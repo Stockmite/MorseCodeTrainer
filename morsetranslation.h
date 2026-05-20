@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 typedef unsigned short SHORT;
 
@@ -88,5 +89,41 @@ short int GetMorse(char c) {
             return CreateVal(30, 5);
     }
 
+
+}
+
+void PrintMorse(char c) {
+
+    SHORT morse = GetMorse(c);
+
+    int len = morse >> 8;
+
+    for (int ind = len - 1; ind >= 0; ind--) {
+
+        if ((morse >> ind) & 1) {
+            printf("-");
+        } else {
+            printf(".");
+        }
+
+    }
+
+    printf(" ");
+
+}
+
+SHORT GetMorseFromWriting(char* code) {
+
+    char* strbuf = code;
+
+    char cbuf = strbuf[0];
+
+    while (cbuf != '\0') {
+        
+    }
+
+}
+
+char GetCharFromMorse(SHORT morse) {
 
 }
