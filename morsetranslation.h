@@ -4,6 +4,8 @@
 
 typedef unsigned short SHORT;
 
+char alphabet[] = "abcdefghijklmnopqrstuvwxyz1234567890";
+
 SHORT CreateVal(int code, int len) {
 
     SHORT Val = (SHORT)len;
@@ -114,16 +116,33 @@ void PrintMorse(char c) {
 
 SHORT GetMorseFromWriting(char* code) {
 
-    char* strbuf = code;
+    SHORT Morse = 0;
+    SHORT len = 0;
 
-    char cbuf = strbuf[0];
+    char cbuf = code[0];
 
     while (cbuf != '\0') {
-        
+
+        switch (cbuf) {
+            case '-':
+                Morse |= 1;
+            case '.':
+                Morse << 1;
+        }
+
+        len++;
+        Morse << 1;
+
+        cbuf = code[len];
+
     }
+
+    return Morse | (len << 8);
 
 }
 
 char GetCharFromMorse(SHORT morse) {
+
+    
 
 }
