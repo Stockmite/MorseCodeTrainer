@@ -2,14 +2,14 @@
 #include <ctype.h>
 #include <stdbool.h>
 
-typedef unsigned short SHORT;
+typedef unsigned short Short;
 
 char alphabet[] = "abcdefghijklmnopqrstuvwxyz1234567890";
 
-SHORT CreateVal(int code, int len) {
+Short CreateVal(int code, int len) {
 
-    SHORT Val = (SHORT)len;
-    return (Val << 8) | (SHORT)code;
+    Short Val = (Short)len;
+    return (Val << 8) | (Short)code;
 
 }
 
@@ -96,7 +96,7 @@ short int GetMorse(char c) {
 
 void PrintMorse(char c) {
 
-    SHORT morse = GetMorse(c);
+    Short morse = GetMorse(c);
 
     int len = morse >> 8;
 
@@ -114,10 +114,10 @@ void PrintMorse(char c) {
 
 }
 
-SHORT GetMorseFromWriting(char* code) {
+Short GetMorseFromWriting(char* code) {
 
-    SHORT Morse = 0;
-    SHORT len = 0;
+    Short Morse = 0;
+    Short len = 0;
 
     char cbuf = code[0];
 
@@ -141,8 +141,14 @@ SHORT GetMorseFromWriting(char* code) {
 
 }
 
-char GetCharFromMorse(SHORT morse) {
+char GetCharFromMorse(Short morse) {
 
-    
+    for (int ind = 0; ind < 36; ind++) {
 
+        //Yes, this isn't particularly efficient, too bad!
+        if (GetMorse(alphabet[ind]) == morse) {return alphabet[ind];}
+
+    }
+
+    return '\0';
 }
